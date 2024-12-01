@@ -1,0 +1,30 @@
+asyncapi: '2.6.0'
+info:
+  title: WebSocket Mock Example
+  version: '1.0.0'
+servers:
+  websocketServer:
+    url: ws://localhost:3000
+    protocol: ws
+channels:
+  chat/message:
+    subscribe:
+      operationId: receiveMessage
+      message:
+        payload:
+          type: object
+          properties:
+            user:
+              type: string
+            message:
+              type: string
+    publish:
+      operationId: sendMessage
+      message:
+        payload:
+          type: object
+          properties:
+            user:
+              type: string
+            message:
+              type: string
