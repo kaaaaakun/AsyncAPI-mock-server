@@ -8,11 +8,11 @@ mock-init:
 	docker rm asyncapi-generator-container ; \
 	docker rmi asyncapi-generator
 
-# mock-serverのコンテナを作成し、8080ポートで起動
+# mock-serverのコンテナを作成し、3080ポートで起動
 mock-start:
 	# imageは都度削除される
 	docker build -t mock-server-image ./mock-server
-	docker run --rm --name mock-server -p 8080:80 mock-server-image
+	docker run --rm --name mock-server -p 3000:3000 mock-server-image
 
 mock-clean:
 	rm -rf ./mock-server
