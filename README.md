@@ -1,6 +1,8 @@
 # WebSocket Mock Server using AsyncAPI Generator
 
-このプロジェクトは、AsyncAPI Generator を使用して WebSocket モックサーバーを作成する方法を示します。サーバーは、AsyncAPI 仕様に基づいて WebSocket ベースのチャットサービスをシミュレートし、メッセージの送受信ができます。
+このプロジェクトは、AsyncAPI Generator を使用して WebSocket モックサーバーを作成する方法を示します。
+サーバーは、AsyncAPI 仕様に基づいて WebSocket ベースのチャットサービスをシミュレートし、メッセージの送受信ができます。
+ただ、送受信するjsonファイルは自分で実装する必要があります。
 
 ## 概要
 
@@ -38,7 +40,7 @@ make mock-init
 
 `mock-start` ターゲットは以下の操作を行います：
 - `./mock-server` ディレクトリからモックサーバーの Docker イメージをビルド
-- サーバーをポート `8080` で起動（`http://localhost:8080`）
+- サーバーをポート `3000` で起動（`http://localhost:3000`）
 - `wscat -c ws://localhost:3000/` で WebSocket 接続確認
 
 ```bash
@@ -71,6 +73,9 @@ make mock-clean
 AsyncAPI 仕様ファイルで、WebSocket チャットサービスを定義しています。以下の操作をサポート：
 - **`subscribe`**: チャットメッセージを受信
 - **`publish`**: チャットメッセージを送信
+- `operationId`は必須です。
+- versionは`3.0.0`未満を使用してください。
+- `servers`の`websocketServer`部分はDockerfile内部と繋がっているので、変更しないでください。
 
 ```yaml
 asyncapi: '2.6.0'
